@@ -358,9 +358,7 @@ def pregunta_11():
                 dict_words[word] = dict_words[word]+times
             except:
                 dict_words[word] = times
-    list_tuples = [(k, v) for k, v in dict_words.items()]
-    list_tuples.sort()
-    return(list_tuples)
+    return(dict_words)
 
 
 
@@ -390,6 +388,4 @@ def pregunta_12():
                 dict_words[word] = dict_words[word]+times
             except:
                 dict_words[word] = times
-    list_tuples = [(k, v) for k, v in dict_words.items()]
-    list_tuples.sort()
-    return(list_tuples)
+    return(dict_words)
