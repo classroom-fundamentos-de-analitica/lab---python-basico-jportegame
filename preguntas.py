@@ -289,7 +289,19 @@ def pregunta_09():
     }
 
     """
-    return
+    dict_words = {}
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    data = [line[4].split(",") for line in data]
+    data = [value.split(':')[0] for value in sum(data, [])]
+    data.sort()
+    for word in data:
+        try:
+            dict_words[word] += 1
+        except:
+            dict_words[word] = 1
+    return(dict_words)
 
 
 def pregunta_10():
@@ -310,7 +322,11 @@ def pregunta_10():
 
 
     """
-    return
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    data = [(line[0], len(line[3].split(',')), len(line[4].split(','))) for line in data]
+    return data
 
 
 def pregunta_11():
@@ -331,7 +347,21 @@ def pregunta_11():
 
 
     """
-    return
+    dict_words = {}
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    data = [(line[3].split(','), int(line[1])) for line in data]
+    for words, times in data:
+        for word in words:
+            try:
+                dict_words[word] = dict_words[word]+times
+            except:
+                dict_words[word] = times
+    list_tuples = [(k, v) for k, v in dict_words.items()]
+    list_tuples.sort()
+    return(list_tuples)
+
 
 
 def pregunta_12():
@@ -349,4 +379,17 @@ def pregunta_12():
     }
 
     """
-    return
+    dict_words = {}
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    data = [(line[0], sum([int(x.split(':')[1]) for x in line[4].split(',')])) for line in data]
+    for words, times in data:
+        for word in words:
+            try:
+                dict_words[word] = dict_words[word]+times
+            except:
+                dict_words[word] = times
+    list_tuples = [(k, v) for k, v in dict_words.items()]
+    list_tuples.sort()
+    return(list_tuples)
