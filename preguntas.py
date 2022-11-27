@@ -222,14 +222,15 @@ def pregunta_07():
     data = [line.replace("\n", "") for line in data]
     data = [line.split("\t") for line in data]
     data = [(line[1], line[0]) for line in data]
-    data.sort()
     for number, word in data:
         try:
             dict_words[number].append(word)
         except:
             dict_words[number] = [word]
     list_tuples = [(k, v) for k, v in dict_words.items()]
+    list_tuples.sort()
     return(list_tuples)
+
 
 def pregunta_08():
     """
@@ -253,7 +254,19 @@ def pregunta_08():
     ]
 
     """
-    return
+    dict_words = {}
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    data = [(line[1], line[0]) for line in data]
+    data.sort()
+    for number, word in data:
+        try:
+            dict_words[number].append(word)
+        except:
+            dict_words[number] = [word]
+    list_tuples = [(k,sorted(list(set(v)))) for k, v in dict_words.items()]
+    return(list_tuples)
 
 
 def pregunta_09():
