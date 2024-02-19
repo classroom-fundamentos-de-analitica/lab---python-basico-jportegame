@@ -21,7 +21,13 @@ def pregunta_01():
     214
 
     """
-    return
+
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    nums = [int(line[1]) for line in data]
+    sum_nums = sum(nums)
+    return sum_nums
 
 
 def pregunta_02():
@@ -39,7 +45,19 @@ def pregunta_02():
     ]
 
     """
-    return
+    dict_words = {}
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    data = [line[0] for line in data]
+    data.sort()
+    for word in data:
+        try:
+            dict_words[word] = dict_words[word]+1
+        except:
+            dict_words[word] = 1
+    list_tuples = [(k, v) for k, v in dict_words.items()]
+    return(list_tuples)
 
 
 def pregunta_03():
@@ -57,7 +75,19 @@ def pregunta_03():
     ]
 
     """
-    return
+    dict_words = {}
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    data = [(line[0], int(line[1])) for line in data]
+    data.sort()
+    for word, times in data:
+        try:
+            dict_words[word] = dict_words[word]+times
+        except:
+            dict_words[word] = times
+    list_tuples = [(k, v) for k, v in dict_words.items()]
+    return(list_tuples)
 
 
 def pregunta_04():
@@ -82,7 +112,19 @@ def pregunta_04():
     ]
 
     """
-    return
+    dict_months = {}
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    data = [line[2].split('-')[1] for line in data]
+    data.sort()
+    for month in data:
+        try:
+            dict_months[month] = dict_months[month]+1
+        except:
+            dict_months[month] = 1
+    list_tuples = [(k, v) for k, v in dict_months.items()]
+    return(list_tuples)
 
 
 def pregunta_05():
@@ -100,7 +142,19 @@ def pregunta_05():
     ]
 
     """
-    return
+    dict_words = {}
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    data = [(line[0], int(line[1])) for line in data]
+    data.sort()
+    for word, number in data:
+        try:
+            dict_words[word].append(number)
+        except:
+            dict_words[word] = [number]
+    list_tuples = [(k, max(v), min(v)) for k, v in dict_words.items()]
+    return(list_tuples)
 
 
 def pregunta_06():
@@ -125,7 +179,21 @@ def pregunta_06():
     ]
 
     """
-    return
+    dict_words = {}
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    data = [line[4].split(",") for line in data]
+    data = [value.split(':') for value in sum(data, [])]
+    data.sort()
+    for word, number in data:
+        try:
+            dict_words[word].append(int(number))
+        except:
+            dict_words[word] = [int(number)]
+    list_tuples = [(k, min(v), max(v)) for k, v in dict_words.items()]
+    return(list_tuples)
+    
 
 
 def pregunta_07():
@@ -149,7 +217,19 @@ def pregunta_07():
     ]
 
     """
-    return
+    dict_words = {}
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    data = [(int(line[1]), line[0]) for line in data]
+    for number, word in data:
+        try:
+            dict_words[number].append(word)
+        except:
+            dict_words[number] = [word]
+    list_tuples = [(k, v) for k, v in dict_words.items()]
+    list_tuples.sort()
+    return(list_tuples)
 
 
 def pregunta_08():
@@ -174,7 +254,19 @@ def pregunta_08():
     ]
 
     """
-    return
+    dict_words = {}
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    data = [(int(line[1]), line[0]) for line in data]
+    data.sort()
+    for number, word in data:
+        try:
+            dict_words[number].append(word)
+        except:
+            dict_words[number] = [word]
+    list_tuples = [(k,sorted(list(set(v)))) for k, v in dict_words.items()]
+    return(list_tuples)
 
 
 def pregunta_09():
@@ -197,7 +289,19 @@ def pregunta_09():
     }
 
     """
-    return
+    dict_words = {}
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    data = [line[4].split(",") for line in data]
+    data = [value.split(':')[0] for value in sum(data, [])]
+    data.sort()
+    for word in data:
+        try:
+            dict_words[word] += 1
+        except:
+            dict_words[word] = 1
+    return(dict_words)
 
 
 def pregunta_10():
@@ -218,7 +322,11 @@ def pregunta_10():
 
 
     """
-    return
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    data = [(line[0], len(line[3].split(',')), len(line[4].split(','))) for line in data]
+    return data
 
 
 def pregunta_11():
@@ -239,7 +347,19 @@ def pregunta_11():
 
 
     """
-    return
+    dict_words = {}
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    data = [(line[3].split(','), int(line[1])) for line in data]
+    for words, times in data:
+        for word in words:
+            try:
+                dict_words[word] = dict_words[word]+times
+            except:
+                dict_words[word] = times
+    return(dict_words)
+
 
 
 def pregunta_12():
@@ -257,4 +377,15 @@ def pregunta_12():
     }
 
     """
-    return
+    dict_words = {}
+    data = open("data.csv", "r").readlines()
+    data = [line.replace("\n", "") for line in data]
+    data = [line.split("\t") for line in data]
+    data = [(line[0], sum([int(x.split(':')[1]) for x in line[4].split(',')])) for line in data]
+    for words, times in data:
+        for word in words:
+            try:
+                dict_words[word] = dict_words[word]+times
+            except:
+                dict_words[word] = times
+    return(dict_words)
